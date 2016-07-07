@@ -2,3 +2,4 @@
 logs/
 .venv/
 *.csv
+.ipynb_checkpoints/
