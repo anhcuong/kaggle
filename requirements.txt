@@ -7,3 +7,4 @@ pandas==0.18.1
 setuptools
 pyparsing
 pytz
+pep8
