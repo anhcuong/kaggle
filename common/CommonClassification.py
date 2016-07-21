@@ -17,14 +17,14 @@ class CommonClassification(object):
 
     def start(self):
         self.random_forest_classifier()
-        self.gradient_boosting_classifier()
-        self.ada_boost_classifier()
-        self.k_neighbor_classifier()
-        self.decision_tree_classifier()
-        self.linear_svc()
+        # self.gradient_boosting_classifier()
+        # self.ada_boost_classifier()
+        # self.k_neighbor_classifier()
+        # self.decision_tree_classifier()
+        # self.linear_svc()
         # self.svc()
-        self.quadratic_discriminant_analysis()
-        self.gaussian()
+        # self.quadratic_discriminant_analysis()
+        # self.gaussian()
         self.xgboost()
 
     def random_forest_classifier(self):
