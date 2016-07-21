@@ -1,6 +1,6 @@
 from sklearn.linear_model import LinearRegression, LogisticRegression
 from sklearn.ensemble import (RandomForestRegressor, GradientBoostingRegressor,
-                             AdaBoostRegressor)
+                              AdaBoostRegressor)
 
 
 class CommonRegression(object):

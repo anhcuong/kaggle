@@ -1,20 +1,20 @@
 import pandas
 import sklearn
 import sys
-
-from pandas import Series, DataFrame
 import numpy as np
 import xgboost as xgb
+from pandas import Series, DataFrame
 from sklearn import cross_validation
+from common.CommonClassification import CommonClassification
 
 sys.path.append("../")
-from common.CommonClassification import CommonClassification
 
 train_df = pandas.read_csv("data/train.csv")
 train_df.drop(["PassengerId", "Name", "Ticket", "Cabin"], axis=1)
 train_df = train_df.drop(["PassengerId", "Name", "Ticket", "Cabin"], axis=1)
 train_df["Age"] = train_df["Age"].fillna(train_df["Age"].mean())
-train_df["Embarked"] = train_df["Embarked"].fillna(train_df["Embarked"].mode()[0])
+embarked_mode = train_df["Embarked"].mode()[0]
+train_df["Embarked"] = train_df["Embarked"].fillna(embarked_mode)
 train_df["Embarked"] = train_df["Embarked"].astype("category")
 train_df["Embarked"] = train_df["Embarked"].cat.codes
 train_df["Sex"] = train_df["Sex"].astype("category")
