@@ -30,4 +30,4 @@ test_df["Sex"] = test_df["Sex"].astype("category")
 test_df["Sex"] = test_df["Sex"].cat.codes
 
 commonAlgo = CommonClassification(training_set, target_set, test_df)
-commonAlgo.start()
+commonAlgo.start_evaluate()
