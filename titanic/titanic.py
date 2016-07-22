@@ -7,8 +7,6 @@ from pandas import Series, DataFrame
 from sklearn import cross_validation
 from common.CommonClassification import CommonClassification
 
-sys.path.append("../")
-
 train_df = pandas.read_csv("data/train.csv")
 train_df.drop(["PassengerId", "Name", "Ticket", "Cabin"], axis=1)
 train_df = train_df.drop(["PassengerId", "Name", "Ticket", "Cabin"], axis=1)
@@ -32,4 +30,4 @@ test_df["Sex"] = test_df["Sex"].astype("category")
 test_df["Sex"] = test_df["Sex"].cat.codes
 
 commonAlgo = CommonClassification(training_set, target_set, test_df)
-commonAlgo.start()
+commonAlgo.start_evaluate()

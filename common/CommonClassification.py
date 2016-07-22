@@ -1,3 +1,4 @@
+import numpy
 from sklearn.ensemble import (RandomForestClassifier,
                               GradientBoostingClassifier, AdaBoostClassifier)
 from sklearn.neighbors import KNeighborsClassifier
@@ -15,16 +16,16 @@ class CommonClassification(object):
         self._y_training_set = y_training_set.values
         self._x_test_set = x_test_set.values
 
-    def start(self):
+    def start_evaluate(self):
         self.random_forest_classifier()
-        self.gradient_boosting_classifier()
-        self.ada_boost_classifier()
-        self.k_neighbor_classifier()
-        self.decision_tree_classifier()
-        self.linear_svc()
+        # self.gradient_boosting_classifier()
+        # self.ada_boost_classifier()
+        # self.k_neighbor_classifier()
+        # self.decision_tree_classifier()
+        # self.linear_svc()
         # self.svc()
-        self.quadratic_discriminant_analysis()
-        self.gaussian()
+        # self.quadratic_discriminant_analysis()
+        # self.gaussian()
         self.xgboost()
 
     def random_forest_classifier(self):
@@ -96,13 +97,25 @@ class CommonClassification(object):
         )
         self.k_fold_cross_validation(xgb)
 
-    def fit(self, model, training_set, target_set):
-        model.fit(training_set, target_set)
-        training_score = model.score(training_set, target_set)
+    def fit(self, model):
+        model.fit(self._x_training_set, self._y_training_set)
+        training_score = model.score(
+            self._x_training_set,
+            self._y_training_set
+        )
         return model, training_score
 
-    def predict(self, model, x_test_set):
-        return model.predict(x_test_set)
+    def predict(self, model, file_output=""):
+        result = model.predict(self._x_test_set)
+        if (file_output):
+            numpy.savetxt(
+                file_output,
+                numpy.dstack(
+                    (numpy.arange(1, result.size+1), result)
+                )[0],
+                "%d,%d"
+            )
+        return result
 
     def k_fold_cross_validation(self, model):
         N = len(self._x_training_set)
